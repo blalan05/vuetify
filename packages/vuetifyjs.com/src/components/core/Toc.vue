@@ -61,25 +61,25 @@
       goTo,
       async genList () {
         const list = []
-        if (this.toc) {
-          const items = document.querySelectorAll('#page [id]')
 
-          for (const item of items) {
-            if (
-              // Not a top level heading
-              !['H1', 'H2'].includes(item.tagName) ||
-              // From previous list
-              this.list.find(l => l.item === item)
-            ) continue
+        const items = document.querySelectorAll('#page [id]')
 
-            list.push({
-              item,
-              text: item.innerText,
-              target: `#${item.id}`,
-              offsetTop: item.offsetTop
-            })
-          }
+        for (const item of items) {
+          if (
+            // Not a top level heading
+            !['H1', 'H2'].includes(item.tagName) ||
+            // From previous list
+            this.list.find(l => l.item === item)
+          ) continue
+
+          list.push({
+            item,
+            text: item.innerText,
+            target: `#${item.id}`,
+            offsetTop: item.offsetTop
+          })
         }
+
         this.list = list
       },
       findActiveIndex () {
